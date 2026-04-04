@@ -55,10 +55,11 @@ This creates a temporary service account, exercises duckling config (pulse -> st
 ## authentication
 
 Token resolution order (first non-empty wins):
-1. `motherduck_token` env var
-2. `MOTHERDUCK_TOKEN` env var
-3. `motherduck_api_key` env var
-4. `MOTHERDUCK_API_KEY` env var
+1. `--token` flag (pass `-` to read from stdin)
+2. `motherduck_token` env var
+3. `MOTHERDUCK_TOKEN` env var
+4. `motherduck_api_key` env var
+5. `MOTHERDUCK_API_KEY` env var
 
 ## CLI reference
 
@@ -95,7 +96,6 @@ Public repo: `dkdc-io/md-cli`
 
 Release: tag `v*.*.*` triggers both workflows. PyPI uses OIDC trusted publishing.
 
-Sync to public repo: `bin/sync-public-repo` (optional `--release` flag to tag).
 
 ## conventions
 
