@@ -6,7 +6,14 @@ echo "Running ruff..."
 uv run --only-group dev ruff check .
 uv run --only-group dev ruff format --check .
 
-echo "Running ty..."
-uv run --only-group dev ty check
+# ty check requires maturin develop (native module must be built).
+# Skip in CI where the native module may not be available.
+if [ -z "${CI:-}" ]; then
+    echo "Building Python bindings for type checking..."
+    uv run maturin develop
+
+    echo "Running ty..."
+    uv run --only-group dev ty check
+fi
 
 echo "Python checks passed!"
